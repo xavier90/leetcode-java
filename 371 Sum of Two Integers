@@ -1,0 +1,20 @@
+//Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -.
+分析：
+异或运算可以得出每个二进制位上相加的结果，不包括进位
+与运算后向左移一位是进位
+将以上两个结果相加就是正确结果。但是补上进位之后，会产生新的进位，因此要继续迭代这个算法，直到进位为0
+
+
+public class solution {
+    public int getSum(int a, int b) {
+        if(b == 0) {
+            return a;
+        }
+        
+        int base, carrier;
+        base = a ^ b;
+        carrier = (a&b)<<1;
+        
+        return getSum(base, carrier);
+    }
+}
