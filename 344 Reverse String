@@ -1,0 +1,19 @@
+public class solution {
+    public String reverseString(String s) {
+        if(s == null || s.length() == 0) {
+            return "";
+        }
+        
+        char[] doIt = s.toCharArray();
+        int begin = 0, end = s.length()-1;
+        while(begin < end) {
+            String w;
+            w = doIt[begin];
+            doIt[begin] = doIt[end];
+            doIt[end] = w;
+            begin++;
+            end--;
+        }
+        return new String(doIt);
+    }
+}
