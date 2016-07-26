@@ -1,0 +1,32 @@
+Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+
+You may assume that the array is non-empty and the majority element always exist in the array.
+
+此题有简单解法，但是感觉没有技术含量
+
+public class solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length/2];
+    }
+}
+
+moore voting algorithm 精妙，原理在于大于n/2时，若把array分为两元素一组，每组中必出现majority元素，二次算法的核心是元素会在majority的位置上持续两次，因此对于此题，majority一直保持出现n/2次数以上那个元素
+
+public class solution {
+    public int majorityElement(int[] nums) {
+        int majority = nums[0] , cnt = 0; 
+        for(int i : nums) {
+            if(cnt == 0) {
+                majority = i;
+                cnt = 1;
+            } else if(i == majority) {
+                cnt++;
+            } else {
+                cnt--;
+            }
+        }
+        
+        return majority;
+    }
+}
