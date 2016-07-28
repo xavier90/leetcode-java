@@ -1,0 +1,32 @@
+Given a roman numeral, convert it to an integer.
+
+Input is guaranteed to be within the range from 1 to 3999.
+运算规则是，从左往右遍历，两两字母对比，左数为加数，左小则减去左，左大则加上左
+从右往左遍历时，左小则减去左，左大则加上左
+依据这个思路就可以写出代码了
+public class solution {
+    public int romanToInt(String s) {
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+        
+        int pivot = map.get(s.charAt(0));
+        int sum = 0;
+        for(int i = 1; i < s.length(); i++) {
+            int cur = map.get(s.charAt(i));
+            if(pivot >= cur) {
+                sum += pivot;
+            } else {
+                sum -= pivot;
+            }
+            pivot = cur;
+        }
+        
+        return sum + pivot;
+    }
+}
