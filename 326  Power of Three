@@ -1,0 +1,23 @@
+Given an integer, write a function to determine if it is a power of three.
+
+Follow up:
+Could you do it without using any loop / recursion?
+
+不用loop/recursion的版本
+public class solution {
+    public boolean isPowerOfThree(int n) {
+        return n > 0 && n == Math.pow(3, Math.round(Math.log(n)/Math.log(3)));
+    }
+}
+
+loop 版本
+public class solution {
+    public boolean isPowerOfThree(int n) {
+        if(n > 1) {
+            while(n % 3 == 0) {
+                n /= 3;
+            }
+        }
+        return n == 1;  //1也是power of three
+    }
+}
