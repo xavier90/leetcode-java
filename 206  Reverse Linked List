@@ -1,0 +1,37 @@
+Reverse a singly linked list.
+
+这是iteration算法
+public class solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode pivot = null;
+        while(head != null) {
+            ListNode temp = head.next;
+            head.next = pivot;
+            pivot = head;
+            head = temp;
+        }
+        return pivot;
+    }
+}
+
+
+recursive算法
+public class solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode pivot = null;
+        return reverseListT(head, pivot);
+    }
+    
+    public ListNode reverseListT(ListNode head, ListNode pivot) {
+        if(head == null) {
+            return pivot;
+        }
+        
+        ListNode temp = head.next;
+        head.next = pivot;
+        pivot = head;
+        head.next = temp;
+        
+        return reverseListT(head, pivot);
+    }
+}
