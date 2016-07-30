@@ -1,0 +1,23 @@
+Given a sorted linked list, delete all duplicates such that each element appear only once.
+
+For example,
+Given 1->1->2, return 1->2.
+Given 1->1->2->3->3, return 1->2->3.
+
+原理简单，但是条件判断有猫腻
+
+public class solution {
+    public ListNode removeDuplicates(ListNode head) {
+        ListNode pivot = head;
+        while(pivot != null) {
+            if(pivot.next == null) {
+                break;
+            } else if(pivot.val == pivot.next.val) {
+                pivot.next = pivot.next.next;
+            } else {
+                pivot = pivot.next;
+            }
+        }
+        return head;
+    }
+}
