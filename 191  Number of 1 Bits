@@ -1,0 +1,30 @@
+Write a function that takes an unsigned integer and returns the number of ’1' bits it has (also known as the Hamming weight).
+
+For example, the 32-bit integer ’11' has binary representation 00000000000000000000000000001011, so the function should return 3.
+
+此题考查位操作
+
+最简单的解法是一个一个找
+public class solution {
+    public int hammingweight(int n) {
+        int ones = 0;
+        while(n != 0) {      //此处不能用n>0的缘故是int中没有2147483648，输入此数后表示-2147483648 
+            ones += (n & 1);
+            n = n >>> 1;
+        }
+        return ones;
+    }
+}
+
+运用x&(x-1)可以turn off the right most 1
+
+public class solution {
+    public int hammingweight(int n) {
+        int ones = 0;
+        while(n != 0) {
+            n &= (n - 1);
+            ones++;
+        }
+        return ones;
+    }
+}
